@@ -40,7 +40,7 @@ extension MCParserCLI {
             print("    to \(dstDir)")
             
             let dirURL = URL(fileURLWithPath: srcDir)
-            let world = try MCDir(dirURL: dirURL, useSecurityScope: false).parser()
+            let world = try MCDir(dirURL: dirURL, useSecurityScope: false).parser(onlyConnectDB: false)
             
             for key in world.wellKnownKeys {
                 if let keyData = key.rawValue.data(using: .utf8), let value = world.db.get(keyData) {
