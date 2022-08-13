@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/yechentide/CoreBedrock",
       "state" : {
-        "revision" : "c58eb5df6f8476445f6db6e950b712a75ebf38e6",
-        "version" : "1.0.1"
+        "revision" : "3e4bfec32c404add1041b1fd81ab5a276b4dc218",
+        "version" : "1.0.2"
       }
     },
     {
