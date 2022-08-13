@@ -14,6 +14,7 @@ struct MCParserCLI: ParsableCommand {
             ExtractChunk.self,
             ExtractKey.self,
             Decode.self,
+            Delete.self,
         ]
     )
 }
