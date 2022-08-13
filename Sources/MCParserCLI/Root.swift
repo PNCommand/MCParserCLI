@@ -12,6 +12,7 @@ struct MCParserCLI: ParsableCommand {
         subcommands: [
             ExtractAll.self,
             ExtractChunk.self,
+            ExtractKey.self,
         ]
     )
 }
