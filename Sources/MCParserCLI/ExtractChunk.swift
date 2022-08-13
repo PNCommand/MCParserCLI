@@ -35,7 +35,7 @@ extension MCParserCLI {
             print("Extract chunk \(dimension)(\(xIndex), \(zIndex)) from \(srcDir)/db")
             print("    to \(dstDir)")
             
-            let prefix = dimension == .overworld ? xIndex.data + zIndex.data : xIndex.data + zIndex.data + dimension.rawValue.data
+            let prefix = (dimension == .overworld) ? xIndex.data + zIndex.data : xIndex.data + zIndex.data + dimension.rawValue.data
             let start = prefix + Data([MCChunkKeyType.keyTypeStartWith])
             
             let rootDirURL = URL(fileURLWithPath: dstDir + "/" + prefix.hexString)

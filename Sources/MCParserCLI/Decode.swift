@@ -29,10 +29,6 @@ extension MCParserCLI {
             let reader = CBReader(stream)
             
             let rootTag = try reader.readAsTag() as! CompoundTag
-            if rootTag.tagType != .compound {
-                fatalError("Faild to pase NBT Tags...")
-            }
-            
             try rootTag.description.write(toFile: destURL.path, atomically: true, encoding: .utf8)
             
             print("done!\n")
