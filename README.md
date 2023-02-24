@@ -84,10 +84,10 @@ Extracted: AutonomousEntities
 Extracted: BiomeData
 Extracted: LevelChunkMetaDataDictionary
 Extracted: Overworld
-Extracted: actorprefix_144115188092633088
-Extracted: actorprefix_216172782130561024
-Extracted: actorprefix_288230376168488960
-Extracted: actorprefix_360287970206416896
+Extracted: actorprefix_0x00_00_00_01_00_00_00_02
+Extracted: actorprefix_0x00_00_00_01_00_00_00_03
+Extracted: actorprefix_0x00_00_00_01_00_00_00_04
+Extracted: actorprefix_0x00_00_00_01_00_00_00_05
 Extracted: digp_(0,1)
 Extracted: digp_(0,2)
 Extracted: digp_(0,-3)
@@ -156,10 +156,10 @@ Extracted: AutonomousEntities
 Extracted: BiomeData
 Extracted: LevelChunkMetaDataDictionary
 Extracted: Overworld
-Extracted: actorprefix_144115188092633088
-Extracted: actorprefix_216172782130561024
-Extracted: actorprefix_288230376168488960
-Extracted: actorprefix_360287970206416896
+Extracted: actorprefix_0x00_00_00_01_00_00_00_02
+Extracted: actorprefix_0x00_00_00_01_00_00_00_03
+Extracted: actorprefix_0x00_00_00_01_00_00_00_04
+Extracted: actorprefix_0x00_00_00_01_00_00_00_05
 Extracted: digp_(0,1)
 Extracted: digp_(0,2)
 Extracted: digp_(0,-3)
@@ -201,10 +201,10 @@ Others    : 8
 ❯  tree {{path-to-output-directory}}
 {{path-to-output-directory}}
 ├── actorprefix
-│   ├── actorprefix_144115188092633088
-│   ├── actorprefix_216172782130561024
-│   ├── actorprefix_288230376168488960
-│   └── actorprefix_360287970206416896
+│   ├── actorprefix_0x00_00_00_01_00_00_00_02.nbt
+│   ├── actorprefix_0x00_00_00_01_00_00_00_03.nbt
+│   ├── actorprefix_0x00_00_00_01_00_00_00_04.nbt
+│   └── actorprefix_0x00_00_00_01_00_00_00_05.nbt
 ├── chunks
 │   └── overworld
 │       ├── (0,1)_actorDigestVersion
