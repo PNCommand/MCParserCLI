@@ -7,7 +7,7 @@ struct MCParserCLI: ParsableCommand {
     static var configuration = CommandConfiguration(
         commandName: "mcp",
         discussion: "A tool to handle data in Minecraft Bedrock's leveldb",
-        version: "1.0.1",
+        version: "1.1.0",
         shouldDisplay: true,
         subcommands: [
             ExtractAll.self,
