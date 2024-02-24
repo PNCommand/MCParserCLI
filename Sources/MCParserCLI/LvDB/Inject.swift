@@ -10,10 +10,10 @@ extension MCParserCLI {
             shouldDisplay: true
         )
 
-        @Option(name: .customShort("d"), help: "Path of a db directory.")
+        @Option(name: .customLong("dst"), help: "Path of a db directory.")
         var dbDirPath: String
         
-        @Option(name: .customShort("i"), help: "Path of a directory that contains data source files.")
+        @Option(name: .customLong("data"), help: "Path of a directory that contains data source files.")
         var dataDirPath: String
 
         func run() throws {

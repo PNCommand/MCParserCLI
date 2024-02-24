@@ -7,15 +7,18 @@ struct MCParserCLI: ParsableCommand {
     static var configuration = CommandConfiguration(
         commandName: "mcp",
         discussion: "A tool to handle data in Minecraft Bedrock's leveldb",
-        version: "1.1.0",
+        version: "1.1.2",
         shouldDisplay: true,
         subcommands: [
             ExtractAll.self,
             ExtractChunk.self,
             ExtractKey.self,
             Decode.self,
-            Delete.self,
-            Inject.self
+            Inject.self,
+            DeleteChunk.self,
+            ParseSubChunk.self,
+            Map.self,
+            BlockPalette.self,
         ]
     )
 }

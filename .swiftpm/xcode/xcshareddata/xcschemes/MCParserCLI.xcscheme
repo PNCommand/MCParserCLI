@@ -66,8 +66,12 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "extract --src /private/tmp/worlds/server-world --dst /private/tmp/worlds/server-world/data02"
+            argument = "map --src /Users/tide/Downloads/parse-bedrock/flat_1_19/db -x 0 -z 0"
             isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "test"
+            isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
    </LaunchAction>

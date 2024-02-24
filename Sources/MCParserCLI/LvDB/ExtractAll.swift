@@ -100,9 +100,9 @@ extension MCParserCLI {
             try? fileManager.createDirectory(atPath: unknownDir, withIntermediateDirectories: true)
         }
 
-        private func parseWellKnownKey(_ keyData: Data) -> String? {
+        private func parseStringKey(_ keyData: Data) -> String? {
             guard let keyStr = String(data: keyData, encoding: .utf8),
-                  let _ = MCWellKnownKey(rawValue: keyStr)
+                  let _ = MCStringKeyType(rawValue: keyStr)
             else {
                 return nil
             }
@@ -119,7 +119,7 @@ extension MCParserCLI {
                 keyName = String(data: keyData, encoding: .utf8)!
                 return (playerDir, keyName, true)
             case "str":
-                keyName = "structure(" + keyData.hexString + ")"
+                keyName = String(data: keyData, encoding: .utf8)!
                 return (structureDir, keyName, true)
             case "map":
                 keyName = String(data: keyData, encoding: .utf8)!
@@ -140,7 +140,7 @@ extension MCParserCLI {
                 keyName = "actorprefix_\(id)"
                 counter.actorKeys += 1
                 if !saveActor || counter.actorKeys > limit {
-                    return ("", keyName, true)
+                    return (nil, keyName, true)
                 }
                 return (actorprefixDir, keyName, true)
             case "dig":
@@ -149,7 +149,7 @@ extension MCParserCLI {
                 keyName = "digp_(\(x),\(z))"
                 counter.digpKeys += 1
                 if !saveDigp || counter.digpKeys > limit {
-                    return ("", keyName, false)
+                    return (nil, keyName, false)
                 }
                 return (digpDir, keyName, false)
             default:
@@ -223,17 +223,23 @@ extension MCParserCLI {
             }
 
             let counter = KeyCounter()
-            db.seekToFirst()
-            while db.valid() {
+            guard let iter = db.makeIterator() else {
+                fatalError("Failed to make iterator!")
+            }
+            defer {
+                iter.destroy()
+            }
+            iter.seekToFirst()
+            while iter.valid() {
                 defer {
                     counter.total += 1
-                    db.next()
+                    iter.next()
                 }
-                guard let keyData = db.key() else { continue }
+                guard let keyData = iter.key() else { continue }
 
-                if let wellKnownKey = parseWellKnownKey(keyData) {
+                if let wellKnownKey = parseStringKey(keyData) {
                     counter.extracted += 1
-                    try save(to: wellKnownDir, fileName: wellKnownKey, value: db.value(), isNBT: true)
+                    try save(to: wellKnownDir, fileName: wellKnownKey, value: iter.value(), isNBT: true)
                     print("Extracted: \(wellKnownKey)")
                     continue
                 }
@@ -241,7 +247,7 @@ extension MCParserCLI {
                 if let (dstDir, prefixedKey, isNBT) = parsePrefixedKey(keyData, counter: counter), prefixedKey != "skip" {
                     if let dstDir = dstDir {
                         counter.extracted += 1
-                        try save(to: dstDir, fileName: prefixedKey, value: db.value(), isNBT: isNBT)
+                        try save(to: dstDir, fileName: prefixedKey, value: iter.value(), isNBT: isNBT)
                         print("Extracted: \(prefixedKey)")
                     } else {
                         print("Skipped  : \(prefixedKey)")
@@ -252,7 +258,7 @@ extension MCParserCLI {
                 if let (dstDir, chunkKey) = parseChunkKey(keyData, counter: counter) {
                     if saveChunk, let dstDir = dstDir {
                         counter.extracted += 1
-                        try save(to: dstDir, fileName: chunkKey, value: db.value(), isNBT: false)
+                        try save(to: dstDir, fileName: chunkKey, value: iter.value(), isNBT: false)
                         print("Extracted: \(chunkKey)")
                     } else {
                         print("Skipped  : \(chunkKey)")
@@ -261,7 +267,7 @@ extension MCParserCLI {
                 }
 
                 counter.unknown += 1
-                try save(to: unknownDir, fileName: keyData.hexString, value: db.value(), isNBT: false)
+                try save(to: unknownDir, fileName: keyData.hexString, value: iter.value(), isNBT: false)
                 print("Skipped unknown key: \(keyData.hexString)")
             }
 

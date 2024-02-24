@@ -34,6 +34,10 @@ extension MCParserCLI {
             print("\n========== ========== ========== ========== ========== ==========")
             print("Extract data from \(srcDir)")
             print("    to \(dstDir)")
+
+            if !FileManager.default.fileExists(atPath: dstDir) {
+                try? FileManager.default.createDirectory(atPath: dstDir, withIntermediateDirectories: true)
+            }
             
             let url = URL(fileURLWithPath: dstDir + "/" + keyStr + ".dat")
             try value.write(to: url)
